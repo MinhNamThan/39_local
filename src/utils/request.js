@@ -11,7 +11,7 @@ const METHOD = {
   PATCH: "patch",
 };
 
-async function request(url, method, params, config) {
+async function request(url, method, params, config, data) {
   switch (method) {
     case METHOD.GET:
       return axios.get(url, { params, ...config });
@@ -22,7 +22,7 @@ async function request(url, method, params, config) {
     case METHOD.PATCH:
       return axios.patch(url, params, config);
     case METHOD.DELETE:
-      return axios.delete(url, { params, ...config });
+      return axios.delete(url, { params, ...config }, data);
     default:
       return axios.get(url, { params, ...config });
   }

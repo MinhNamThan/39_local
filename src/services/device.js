@@ -18,8 +18,8 @@ export async function getListEntityId() {
 export async function saveDevice(params) {
   return request(ADDDEVICE, METHOD.POST, params);
 }
-export async function deleteDevice(params) {
-  return request(DELETEDEVICE, METHOD.DELETE, params);
+export async function deleteDevice(data) {
+  return request(DELETEDEVICE, METHOD.DELETE, data);
 }
 export async function trainDevice(params) {
   return request(TRAINDEVICE, METHOD.POST, params);
