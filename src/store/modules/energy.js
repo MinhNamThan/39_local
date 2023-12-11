@@ -1,4 +1,4 @@
-import apiService from "@/services/device";
+import apiService from "@/services/energy";
 
 export default {
   namespaced: true,
@@ -13,30 +13,31 @@ export default {
     async getListDevice(context) {
       const { data } = await apiService.getListDevice();
       const list_devices = data.list_devices;
-      console.log(list_devices);
       context.commit("setDeviceList", list_devices);
     },
     async getListEntityId(context) {
       const { data } = await apiService.getListEntityId();
-      context.commit("setEntityIdList", data);
+      const dataStr = [];
+      data.forEach((element) => {
+        dataStr.push(element.toString());
+      });
+      context.commit("setEntityIdList", dataStr);
     },
     async saveDevice(context, body) {
       await apiService.saveDevice(body);
     },
     async deleteDevice(context, body) {
-      console.log(body);
       await apiService.deleteDevice(body);
     },
     async trainDevice(context, body) {
-      const data = await apiService.trainDevice(body);
-      console.log(data);
+      await apiService.trainDevice(body);
     },
-    async getLogDevice(context, body) {
-      const log = await apiService.getLogDevice(body);
+    async getLogState(context, body) {
+      const log = await apiService.getLogState(body);
       context.commit("setListLog", log.data);
     },
-    async getHabitDevice(context, body) {
-      const habit = await apiService.getHabitDevice(body);
+    async getHabitState(context, body) {
+      const habit = await apiService.getHabitState(body);
       context.commit("setListHabit", habit.data);
     },
   },
