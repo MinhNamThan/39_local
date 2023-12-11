@@ -28,9 +28,6 @@
       <template slot="stt" slot-scope="text, record, index">
         {{ getIndex(index) }}
       </template>
-      <template slot="train" slot-scope="text, record">
-        <a-button @click="onTrain(record)">Huấn luyện</a-button>
-      </template>
       <template slot="habit" slot-scope="text, record">
         <a-button @click="onShowHabit(record)">Hiển thị</a-button>
       </template>
@@ -102,28 +99,50 @@
         <h1 class="title m-0">Habit</h1>
       </template>
       <p v-if="typeof listHabit === 'string'">{{ listHabit }}</p>
-      <ol v-else>
-        <li v-for="habit in listHabit" :key="habit">
-          <ul>
+      <ul v-else>
+        <li>
+          <h3>Cuối tuần:</h3>
+          <ul v-if="listHabit['weekend']">
             <li>
-              off_habit:
+              <h4>Đèn tắt:</h4>
               <ul>
-                <li v-for="h in habit['off_habit']" :key="h">
+                <li v-for="h in listHabit['weekend']['off_habit']" :key="h">
                   {{ h }}
                 </li>
               </ul>
             </li>
             <li>
-              on_habit:
+              <h4>Đèn bật:</h4>
               <ul>
-                <li v-for="h in habit['on_habit']" :key="h">
+                <li v-for="h in listHabit['weekend']['on_habit']" :key="h">
                   {{ h }}
                 </li>
               </ul>
             </li>
           </ul>
         </li>
-      </ol>
+        <li class="mt-4">
+          <h3>Ngày trong tuần:</h3>
+          <ul v-if="listHabit['workdays']">
+            <li>
+              <h4>Đèn tắt:</h4>
+              <ul>
+                <li v-for="h in listHabit['workdays']['off_habit']" :key="h">
+                  {{ h }}
+                </li>
+              </ul>
+            </li>
+            <li>
+              <h4>Đèn bật:</h4>
+              <ul>
+                <li v-for="h in listHabit['workdays']['on_habit']" :key="h">
+                  {{ h }}
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
       <template slot="footer"><div></div> </template>
     </a-modal>
   </a-card>
@@ -135,7 +154,7 @@ import { mapActions, mapState } from "vuex";
 import { isSubstring } from "@/utils/stringUtil";
 import { trimObject } from "@/utils/formUtil";
 export default {
-  name: "HomeView",
+  name: "StateView",
   data() {
     return {
       columns: null,
@@ -150,7 +169,7 @@ export default {
     };
   },
   computed: {
-    ...mapState("device", [
+    ...mapState("state", [
       "listDevice",
       "listEntityId",
       "listLog",
@@ -163,14 +182,13 @@ export default {
     },
   },
   methods: {
-    ...mapActions("device", [
+    ...mapActions("state", [
       "getListDevice",
       "getListEntityId",
       "saveDevice",
       "deleteDevice",
-      "trainDevice",
-      "getLogDevice",
-      "getHabitDevice",
+      "getLogState",
+      "getHabitState",
     ]),
     getIndex(index) {
       return (
@@ -233,32 +251,16 @@ export default {
         });
       }
     },
-    async onTrain(record) {
-      try {
-        let bodyFormData = new FormData();
-        bodyFormData.append("entity_id", record.entity_id);
-        bodyFormData.append("type", record.type);
-        await this.trainDevice(bodyFormData);
-        await this.getListDevice();
-        this.$notification["success"]({
-          message: "Huấn luyện thiết bị thành công",
-        });
-      } catch (error) {
-        this.$notification["error"]({
-          message: "Huấn luyện thiết bị không thành công",
-        });
-      }
-    },
     async onShowLog(record) {
       let bodyFormData = new FormData();
       bodyFormData.append("entity_id", record.entity_id);
-      await this.getLogDevice(bodyFormData);
+      await this.getLogState(bodyFormData);
       this.showLog = true;
     },
     async onShowHabit(record) {
       let bodyFormData = new FormData();
       bodyFormData.append("entity_id", record.entity_id);
-      await this.getHabitDevice(bodyFormData);
+      await this.getHabitState(bodyFormData);
       this.showHabit = true;
     },
   },
@@ -271,3 +273,8 @@ export default {
   },
 };
 </script>
+<style scoped>
+h1 {
+  text-align: start;
+}
+</style>
