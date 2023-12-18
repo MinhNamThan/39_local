@@ -28,6 +28,17 @@
       <template slot="stt" slot-scope="text, record, index">
         {{ getIndex(index) }}
       </template>
+      <template slot="type" slot-scope="text">
+        {{ text }}
+        <a-popover>
+          <template slot="content">
+            <p v-if="text == 'date'">Hàng ngày</p>
+            <p v-if="text == 'week'">Hàng tuần</p>
+            <p v-if="text == 'workdays_weekend'">Ngày làm việc</p>
+          </template>
+          <a-icon type="info-circle" />
+        </a-popover>
+      </template>
       <template slot="habit" slot-scope="text, record">
         <a-button @click="onShowHabit(record)">Hiển thị</a-button>
       </template>
@@ -64,6 +75,17 @@
           </a-select>
         </a-form-model-item>
         <a-form-model-item label="Type" prop="type">
+          <a-popover placement="bottom" class="info-modal-input">
+            <template slot="content">
+              <p>date: Hàng ngày</p>
+              <p>week: Hàng tuần</p>
+              <p>workdays_weekend: Ngày làm việc</p>
+            </template>
+            <template slot="title">
+              <span>Loại train</span>
+            </template>
+            <a-icon type="question-circle" />
+          </a-popover>
           <a-select style="width: 100%" v-model="addForm.type">
             <a-select-option
               v-for="item in types"
@@ -101,28 +123,20 @@
         <h1 class="title m-0">Lượng tiêu thụ trung bình</h1>
       </template>
       <p v-if="typeof listHabit === 'string'">{{ listHabit }}</p>
-      <ol v-else>
-        <li v-for="habit in listHabit" :key="habit">
-          <ul>
-            <li>
-              off_habit:
-              <ul>
-                <li v-for="h in habit['off_habit']" :key="h">
-                  {{ h }}
-                </li>
-              </ul>
-            </li>
-            <li>
-              on_habit:
-              <ul>
-                <li v-for="h in habit['on_habit']" :key="h">
-                  {{ h }}
-                </li>
-              </ul>
-            </li>
-          </ul>
+      <ul v-else>
+        <li>
+          <h3 class="d-inline text-bold">Cuối tuần:</h3>
+          <p v-if="listHabit['weekend']" class="d-inline">
+            {{ listHabit["weekend"] }}
+          </p>
         </li>
-      </ol>
+        <li class="mt-4">
+          <h3 class="d-inline text-bold">Ngày trong tuần:</h3>
+          <p v-if="listHabit['workdays']" class="d-inline">
+            {{ listHabit["workdays"] }}
+          </p>
+        </li>
+      </ul>
       <template slot="footer"><div></div> </template>
     </a-modal>
   </a-card>
@@ -256,5 +270,13 @@ export default {
 <style scoped>
 h1 {
   text-align: start;
+}
+.ant-form-item {
+  position: relative;
+}
+.info-modal-input {
+  position: absolute;
+  left: 40px;
+  bottom: 42px;
 }
 </style>

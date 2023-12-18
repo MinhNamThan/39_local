@@ -27,6 +27,7 @@ export const columns1 = [
     title: "Loại theo dõi",
     width: 110,
     dataIndex: "type",
+    scopedSlots: { customRender: "type" },
   },
   {
     title: "Tiêu thụ trung bình",

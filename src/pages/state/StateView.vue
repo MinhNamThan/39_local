@@ -28,6 +28,17 @@
       <template slot="stt" slot-scope="text, record, index">
         {{ getIndex(index) }}
       </template>
+      <template slot="type" slot-scope="text">
+        {{ text }}
+        <a-popover>
+          <template slot="content">
+            <p v-if="text == 'date'">Hàng ngày</p>
+            <p v-if="text == 'week'">Hàng tuần</p>
+            <p v-if="text == 'workdays_weekend'">Ngày làm việc</p>
+          </template>
+          <a-icon type="info-circle" />
+        </a-popover>
+      </template>
       <template slot="habit" slot-scope="text, record">
         <a-button @click="onShowHabit(record)">Hiển thị</a-button>
       </template>
@@ -62,7 +73,18 @@
             </a-select-option>
           </a-select>
         </a-form-model-item>
-        <a-form-model-item label="Type" prop="type">
+        <a-form-model-item label="Type" prop="type" class="custome-ant-form">
+          <a-popover placement="bottom" class="info-modal-input">
+            <template slot="content">
+              <p>date: Hàng ngày</p>
+              <p>week: Hàng tuần</p>
+              <p>workdays_weekend: Ngày làm việc</p>
+            </template>
+            <template slot="title">
+              <span>Loại train</span>
+            </template>
+            <a-icon type="question-circle" />
+          </a-popover>
           <a-select style="width: 100%" v-model="addForm.type">
             <a-select-option
               v-for="item in types"
@@ -101,7 +123,7 @@
       <p v-if="typeof listHabit === 'string'">{{ listHabit }}</p>
       <ul v-else>
         <li>
-          <h3>Cuối tuần:</h3>
+          <h3 class="text-bold">Cuối tuần:</h3>
           <ul v-if="listHabit['weekend']">
             <li>
               <h4>Đèn tắt:</h4>
@@ -122,7 +144,7 @@
           </ul>
         </li>
         <li class="mt-4">
-          <h3>Ngày trong tuần:</h3>
+          <h3 class="text-bold">Ngày trong tuần:</h3>
           <ul v-if="listHabit['workdays']">
             <li>
               <h4>Đèn tắt:</h4>
@@ -276,5 +298,13 @@ export default {
 <style scoped>
 h1 {
   text-align: start;
+}
+.ant-form-item {
+  position: relative;
+}
+.info-modal-input {
+  position: absolute;
+  left: 40px;
+  bottom: 42px;
 }
 </style>
