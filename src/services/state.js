@@ -19,7 +19,7 @@ export async function saveDevice(params) {
   return request(ADD_DEVICE_STATE, METHOD.POST, params);
 }
 export async function deleteDevice(data) {
-  return request(DELETE_DEVICE_STATE, METHOD.DELETE, data);
+  return request(DELETE_DEVICE_STATE, METHOD.POST, data);
 }
 export async function trainDevice(params) {
   return request(TRAIN_DEVICE_STATE, METHOD.POST, params);

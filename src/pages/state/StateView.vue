@@ -32,9 +32,16 @@
         {{ text }}
         <a-popover>
           <template slot="content">
-            <p v-if="text == 'date'">Hàng ngày</p>
-            <p v-if="text == 'week'">Hàng tuần</p>
-            <p v-if="text == 'workdays_weekend'">Ngày làm việc</p>
+            <p v-if="text == 'date'">
+              Theo dõi thói quen bật tắt thiết bị theo ngày.
+            </p>
+            <p v-if="text == 'week'">
+              Theo dõi thói quen bật tắt thiết bị theo tuần.
+            </p>
+            <p v-if="text == 'workdays_weekend'">
+              Theo dõi thói quen bật tắt thiết bị theo ngày làm việc và ngày
+              cuối tuần.
+            </p>
           </template>
           <a-icon type="info-circle" />
         </a-popover>
@@ -76,9 +83,12 @@
         <a-form-model-item label="Type" prop="type" class="custome-ant-form">
           <a-popover placement="bottom" class="info-modal-input">
             <template slot="content">
-              <p>date: Hàng ngày</p>
-              <p>week: Hàng tuần</p>
-              <p>workdays_weekend: Ngày làm việc</p>
+              <p>date: Theo dõi thói quen bật tắt thiết bị theo ngày.</p>
+              <p>week: Theo dõi thói quen bật tắt thiết bị theo tuần.</p>
+              <p>
+                workdays_weekend: Theo dõi thói quen bật tắt thiết bị theo ngày
+                làm việc và ngày cuối tuần.
+              </p>
             </template>
             <template slot="title">
               <span>Loại train</span>
