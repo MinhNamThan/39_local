@@ -24,10 +24,10 @@ export async function deleteDevice(id) {
 export async function trainDevice(params) {
   return request(TRAIN_DEVICE_ENERGY, METHOD.POST, params);
 }
-export async function getLogState(id) {
+export async function getLogEnergy(id) {
   return request(`${LOG_DEVICE_ENERGY}/${id}`, METHOD.GET);
 }
-export async function getHabitState(id) {
+export async function getHabitEnergy(id) {
   return request(`${HABIT_DEVICE_ENERGY}/${id}`, METHOD.GET);
 }
 export default {
@@ -36,6 +36,6 @@ export default {
   saveDevice,
   deleteDevice,
   trainDevice,
-  getLogState,
-  getHabitState,
+  getLogEnergy,
+  getHabitEnergy,
 };
