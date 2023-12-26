@@ -26,18 +26,18 @@ export default {
     async saveDevice(context, body) {
       await apiService.saveDevice(body);
     },
-    async deleteDevice(context, body) {
-      await apiService.deleteDevice(body);
+    async deleteDevice(context, id) {
+      await apiService.deleteDevice(id);
     },
     async trainDevice(context, body) {
       await apiService.trainDevice(body);
     },
-    async getLogState(context, body) {
-      const log = await apiService.getLogState(body);
+    async getLogEnergy(context, id) {
+      const log = await apiService.getLogEnergy(id);
       context.commit("setListLog", log.data);
     },
-    async getHabitState(context, body) {
-      const habit = await apiService.getHabitState(body);
+    async getHabitEnergy(context, id) {
+      const habit = await apiService.getHabitEnergy(id);
       context.commit("setListHabit", habit.data);
     },
   },
