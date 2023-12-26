@@ -181,8 +181,8 @@ export default {
       "getListEntityId",
       "saveDevice",
       "deleteDevice",
-      "getLogState",
-      "getHabitState",
+      "getLogEnergy",
+      "getHabitEnergy",
     ]),
     getIndex(index) {
       return (
@@ -232,9 +232,7 @@ export default {
     },
     async onDelete(record) {
       try {
-        let bodyFormData = new FormData();
-        bodyFormData.append("entity_id", record.entity_id);
-        await this.deleteDevice(bodyFormData);
+        await this.deleteDevice(record.entity_id);
         await this.getListDevice();
         this.$notification["success"]({
           message: "Xoá thiết bị thành công",
@@ -246,15 +244,11 @@ export default {
       }
     },
     async onShowLog(record) {
-      let bodyFormData = new FormData();
-      bodyFormData.append("entity_id", record.entity_id);
-      await this.getLogState(bodyFormData);
+      await this.getLogEnergy(record.entity_id);
       this.showLog = true;
     },
     async onShowHabit(record) {
-      let bodyFormData = new FormData();
-      bodyFormData.append("entity_id", record.entity_id);
-      await this.getHabitState(bodyFormData);
+      await this.getHabitEnergy(record.entity_id);
       this.showHabit = true;
     },
   },
