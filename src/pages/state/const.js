@@ -47,7 +47,7 @@ export const columns1 = [
 ];
 
 export const types = [
-  { id: 1, name: "date", value: "date" },
-  { id: 2, name: "week", value: "week" },
-  { id: 3, name: "workdays_weekend", value: "workdays_weekend" },
+  { id: 1, name: "Theo ngày", value: "date" },
+  { id: 2, name: "Theo tuần", value: "week" },
+  { id: 3, name: "Theo ngày làm việc", value: "workdays_weekend" },
 ];
