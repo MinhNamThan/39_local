@@ -126,7 +126,7 @@
       </template>
       <p v-if="typeof listLog === 'string'">{{ listLog }}</p>
       <ul v-else>
-        <li v-for="log in listLog" :key="log">
+        <li v-for="log in listLog" :key="log.index">
           {{ log }}
         </li>
       </ul>
