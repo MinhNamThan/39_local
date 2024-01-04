@@ -29,7 +29,7 @@
         {{ getIndex(index) }}
       </template>
       <template slot="type" slot-scope="text">
-        {{ text }}
+        {{ showType(text) }}
         <a-popover>
           <template slot="content">
             <p v-if="text == 'date'">
@@ -288,6 +288,11 @@ export default {
     async onShowHabit(record) {
       await this.getHabitState(record.entity_id);
       this.showHabit = true;
+    },
+    showType(text) {
+      if (text == "workdays_weekend") return "Theo ngày làm việc";
+      if (text == "date") return "Theo ngày";
+      if (text == "week") return "Theo tuần";
     },
   },
   async mounted() {
