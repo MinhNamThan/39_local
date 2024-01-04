@@ -32,9 +32,16 @@
         {{ text }}
         <a-popover>
           <template slot="content">
-            <p v-if="text == 'date'">Hàng ngày</p>
-            <p v-if="text == 'week'">Hàng tuần</p>
-            <p v-if="text == 'workdays_weekend'">Ngày làm việc</p>
+            <p v-if="text == 'date'">
+              Theo dõi thói quen bật tắt thiết bị theo ngày.
+            </p>
+            <p v-if="text == 'week'">
+              Theo dõi thói quen bật tắt thiết bị theo tuần.
+            </p>
+            <p v-if="text == 'workdays_weekend'">
+              Theo dõi thói quen bật tắt thiết bị theo ngày làm việc và ngày
+              cuối tuần.
+            </p>
           </template>
           <a-icon type="info-circle" />
         </a-popover>
@@ -76,9 +83,12 @@
         <a-form-model-item label="Type" prop="type" class="custome-ant-form">
           <a-popover placement="bottom" class="info-modal-input">
             <template slot="content">
-              <p>date: Hàng ngày</p>
-              <p>week: Hàng tuần</p>
-              <p>workdays_weekend: Ngày làm việc</p>
+              <p>date: Theo dõi thói quen bật tắt thiết bị theo ngày.</p>
+              <p>week: Theo dõi thói quen bật tắt thiết bị theo tuần.</p>
+              <p>
+                workdays_weekend: Theo dõi thói quen bật tắt thiết bị theo ngày
+                làm việc và ngày cuối tuần.
+              </p>
             </template>
             <template slot="title">
               <span>Loại train</span>
@@ -106,7 +116,7 @@
     </a-modal>
     <a-modal v-model="showLog" :width="800" destroyOnClose>
       <template slot="title">
-        <h1 class="title m-0">Log</h1>
+        <h1 class="title m-0">Thông báo</h1>
       </template>
       <p v-if="typeof listLog === 'string'">{{ listLog }}</p>
       <ul v-else>
@@ -118,7 +128,7 @@
     </a-modal>
     <a-modal v-model="showHabit" :width="800" destroyOnClose>
       <template slot="title">
-        <h1 class="title m-0">Habit</h1>
+        <h1 class="title m-0">Thói quen</h1>
       </template>
       <p v-if="typeof listHabit === 'string'">{{ listHabit }}</p>
       <ul v-else>
@@ -126,7 +136,7 @@
           <h3 class="text-bold">Cuối tuần:</h3>
           <ul v-if="listHabit['weekend']">
             <li>
-              <h4>Đèn tắt:</h4>
+              <h4>Thói quen tắt:</h4>
               <ul>
                 <li v-for="h in listHabit['weekend']['off_habit']" :key="h">
                   {{ h }}
@@ -134,7 +144,7 @@
               </ul>
             </li>
             <li>
-              <h4>Đèn bật:</h4>
+              <h4>Thói quen bật:</h4>
               <ul>
                 <li v-for="h in listHabit['weekend']['on_habit']" :key="h">
                   {{ h }}
@@ -147,7 +157,7 @@
           <h3 class="text-bold">Ngày trong tuần:</h3>
           <ul v-if="listHabit['workdays']">
             <li>
-              <h4>Đèn tắt:</h4>
+              <h4>Thói quen tắt:</h4>
               <ul>
                 <li v-for="h in listHabit['workdays']['off_habit']" :key="h">
                   {{ h }}
@@ -155,7 +165,7 @@
               </ul>
             </li>
             <li>
-              <h4>Đèn bật:</h4>
+              <h4>Thói quen bật:</h4>
               <ul>
                 <li v-for="h in listHabit['workdays']['on_habit']" :key="h">
                   {{ h }}
