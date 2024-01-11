@@ -49,5 +49,5 @@ export const columns1 = [
 export const types = [
   { id: 1, name: "Theo ngày", value: "date" },
   { id: 2, name: "Theo tuần", value: "week" },
-  { id: 3, name: "Theo ngày làm việc", value: "workdays_weekend" },
+  { id: 3, name: "Theo ngày làm việc và ngày nghỉ", value: "workdays_weekend" },
 ];
