@@ -136,7 +136,7 @@
           <h3 class="text-bold">Cuối tuần:</h3>
           <ul v-if="listHabit['weekend']">
             <li>
-              <h4>Đèn tắt:</h4>
+              <h4>Thói quen tắt:</h4>
               <ul>
                 <li v-for="h in listHabit['weekend']['off_habit']" :key="h">
                   {{ h }}
@@ -144,7 +144,7 @@
               </ul>
             </li>
             <li>
-              <h4>Đèn bật:</h4>
+              <h4>Thói quen bật:</h4>
               <ul>
                 <li v-for="h in listHabit['weekend']['on_habit']" :key="h">
                   {{ h }}
@@ -157,7 +157,7 @@
           <h3 class="text-bold">Ngày trong tuần:</h3>
           <ul v-if="listHabit['workdays']">
             <li>
-              <h4>Đèn tắt:</h4>
+              <h4>Thói quen tắt:</h4>
               <ul>
                 <li v-for="h in listHabit['workdays']['off_habit']" :key="h">
                   {{ h }}
@@ -165,7 +165,7 @@
               </ul>
             </li>
             <li>
-              <h4>Đèn bật:</h4>
+              <h4>Thói quen bật:</h4>
               <ul>
                 <li v-for="h in listHabit['workdays']['on_habit']" :key="h">
                   {{ h }}
@@ -177,7 +177,7 @@
       </ul>
       <ul v-else>
         <li>
-          <h4>Đèn tắt:</h4>
+          <h4>Thói quen tắt:</h4>
           <ul>
             <li v-for="h in listHabit['off_habit']" :key="h">
               {{ h }}
@@ -185,7 +185,7 @@
           </ul>
         </li>
         <li>
-          <h4>Đèn bật:</h4>
+          <h4>Thói quen bật:</h4>
           <ul>
             <li v-for="h in listHabit['on_habit']" :key="h">
               {{ h }}
