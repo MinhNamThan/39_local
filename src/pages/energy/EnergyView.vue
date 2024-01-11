@@ -266,7 +266,7 @@ export default {
       this.showHabit = true;
     },
     showType(text) {
-      if (text == "workdays_weekend") return "Theo ngày làm việc";
+      if (text == "workdays_weekend") return "Theo ngày làm việc và ngày nghỉ";
       if (text == "date") return "Theo ngày";
       if (text == "week") return "Theo tuần";
     },

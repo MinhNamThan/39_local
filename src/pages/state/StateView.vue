@@ -131,7 +131,7 @@
         <h1 class="title m-0">Habit</h1>
       </template>
       <p v-if="typeof listHabit === 'string'">{{ listHabit }}</p>
-      <ul v-else>
+      <ul v-else-if="typeHabit == 'workdays_weekend'">
         <li>
           <h3 class="text-bold">Cuối tuần:</h3>
           <ul v-if="listHabit['weekend']">
@@ -175,6 +175,24 @@
           </ul>
         </li>
       </ul>
+      <ul v-else>
+        <li>
+          <h4>Đèn tắt:</h4>
+          <ul>
+            <li v-for="h in listHabit['off_habit']" :key="h">
+              {{ h }}
+            </li>
+          </ul>
+        </li>
+        <li>
+          <h4>Đèn bật:</h4>
+          <ul>
+            <li v-for="h in listHabit['on_habit']" :key="h">
+              {{ h }}
+            </li>
+          </ul>
+        </li>
+      </ul>
       <template slot="footer"><div></div> </template>
     </a-modal>
   </a-card>
@@ -198,6 +216,7 @@ export default {
       types,
       showLog: false,
       showHabit: false,
+      typeHabit: "",
     };
   },
   computed: {
@@ -286,11 +305,12 @@ export default {
       this.showLog = true;
     },
     async onShowHabit(record) {
+      this.typeHabit = record.type;
       await this.getHabitState(record.entity_id);
       this.showHabit = true;
     },
     showType(text) {
-      if (text == "workdays_weekend") return "Theo ngày làm việc";
+      if (text == "workdays_weekend") return "Theo ngày làm việc và ngày nghỉ";
       if (text == "date") return "Theo ngày";
       if (text == "week") return "Theo tuần";
     },
