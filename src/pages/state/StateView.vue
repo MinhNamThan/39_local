@@ -177,7 +177,7 @@
       </ul>
       <ul v-else>
         <li>
-          <h4>Đèn tắt:</h4>
+          <h4>Thói quen tắt:</h4>
           <ul>
             <li v-for="h in listHabit['off_habit']" :key="h">
               {{ h }}
@@ -185,7 +185,7 @@
           </ul>
         </li>
         <li>
-          <h4>Đèn bật:</h4>
+          <h4>Thói quen bật:</h4>
           <ul>
             <li v-for="h in listHabit['on_habit']" :key="h">
               {{ h }}
