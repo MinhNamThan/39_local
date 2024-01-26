@@ -17,11 +17,7 @@ export default {
     },
     async getListEntityId(context) {
       const { data } = await apiService.getListEntityId();
-      const dataStr = [];
-      data.forEach((element) => {
-        dataStr.push(element.toString());
-      });
-      context.commit("setEntityIdList", dataStr);
+      context.commit("setEntityIdList", data);
     },
     async saveDevice(context, body) {
       await apiService.saveDevice(body);

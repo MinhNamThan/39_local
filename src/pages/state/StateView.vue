@@ -75,8 +75,8 @@
       >
         <a-form-model-item label="Entity id" prop="entity_id">
           <a-select style="width: 100%" v-model="addForm.entity_id">
-            <a-select-option v-for="item in listEntityId" :key="item">
-              {{ item }}
+            <a-select-option v-for="item in listEntityId" :key="item.entity_id">
+              {{ item["friendly_name"] }}
             </a-select-option>
           </a-select>
         </a-form-model-item>
