@@ -26,8 +26,8 @@ export const columns1 = [
   {
     title: "Loại theo dõi",
     width: 110,
-    dataIndex: "type",
-    scopedSlots: { customRender: "type" },
+    dataIndex: "type_train",
+    scopedSlots: { customRender: "type_train" },
   },
   {
     title: "Thói quen",

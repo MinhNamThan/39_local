@@ -12,8 +12,7 @@ export default {
   actions: {
     async getListDevice(context) {
       const { data } = await apiService.getListDevice();
-      const list_devices = data.list_devices;
-      context.commit("setDeviceList", list_devices);
+      context.commit("setDeviceList", data);
     },
     async getListEntityId(context) {
       const { data } = await apiService.getListEntityId();

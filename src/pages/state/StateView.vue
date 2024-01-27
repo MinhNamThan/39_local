@@ -305,7 +305,7 @@ export default {
       this.showLog = true;
     },
     async onShowHabit(record) {
-      this.typeHabit = record.type;
+      this.typeHabit = record.type_train;
       await this.getHabitState(record.entity_id);
       this.showHabit = true;
     },
