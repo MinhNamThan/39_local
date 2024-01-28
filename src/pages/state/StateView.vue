@@ -28,7 +28,7 @@
       <template slot="stt" slot-scope="text, record, index">
         {{ getIndex(index) }}
       </template>
-      <template slot="type" slot-scope="text">
+      <template slot="type_train" slot-scope="text">
         {{ showType(text) }}
         <a-popover>
           <template slot="content">
